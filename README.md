@@ -1,17 +1,16 @@
-# Trossachs Group site
+# Trozaxs Group site
 
-Plain HTML, CSS and JavaScript. No build step. Open `index.html` (or upload the folder to any static host).
+Static site, no build step. Every file is in one flat folder with lowercase names.
 
-## Local admin
-Open `admin.html`. Username: `trossachs.int@gmail.com`  Password: `BEST`
+## Deploy on Vercel
+1. Push this folder's contents to the root of a GitHub repo.
+2. Vercel > Add New Project > import the repo. Framework Preset: Other. Leave Build Command, Install Command and Output Directory empty. Deploy.
 
-- Edit the words of every section, set image links (or upload a file), manage services, projects and the Launching Soon slides.
-- Everything saves automatically in your browser and appears on the site straight away.
-- **Messages**: the Contact form saves messages in the browser that sent them; read and delete them in Admin > Messages.
-- **Publish for everyone**: Admin > Backup & publish > Download content.js, replace `js/content.js`, upload again.
-- Change the sign-in on the first line of `js/admin.js`. It is a convenience gate, not real security.
-- To receive every visitor's message by email, paste a form endpoint (for example Formspree) under Admin > Contact.
+The admin is at /admin. To publish edits: Admin > Backup & publish > Download content.js, replace content.js in the repo, commit and push.
 
-## Files
-`index.html` site, `admin.html` admin, `css/`, `js/defaults.js` original wording, `js/content.js` published edits, `js/store.js`, `js/app.js`, `js/admin.js`, `js/textures.js` 3D logo images, `assets/`.
-3D uses three.js from a CDN; for offline use put `three.min.js` in `js/vendor/` and change the script tag in `index.html`.
+## Products page and social preview
+
+- `#products` lists ready-made websites. Edit them in Admin > Products (name, price, features, image, demo link, payment link).
+- A product with a payment link (Paystack, Flutterwave, Stripe) shows **Buy now**. Without one, the button opens the contact form with the product and price filled in. The site cannot take payments itself.
+- Prices are placeholders. Change them before launch.
+- Social preview: in `index.html`, replace `https://trossachs-group.atwebpages.com` (og:url, og:image, twitter:image) with your real domain. Re-scrape the link in Facebook's Sharing Debugger, X and WhatsApp after deploying.
