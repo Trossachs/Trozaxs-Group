@@ -2,7 +2,7 @@
    so you can leave it as it is. To change what visitors see, edit in the admin and export content.js. */
 window.TG_DEFAULTS = {
   "site": {
-    "blogUrl": "https://techlab.vercel.app",
+    "blogUrl": "https://trozaxsblog.vercel.app",
     "navCta": "Get Started",
     "logoUrl": ""
   },
