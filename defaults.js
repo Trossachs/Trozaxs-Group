@@ -376,6 +376,79 @@ window.TG_DEFAULTS = {
       }
     ]
   },
+  "careers": {
+    "eyebrow": "Careers",
+    "heroTitle": "Join our team and reshape the future",
+    "heroText": "We work with talented people who challenge the status quo, push boundaries and create solutions that shape the future of modern business.",
+    "heroImage": "career-hero.jpg",
+    "valuesEyebrow": "Working with us",
+    "valuesHeading": "Discover a workplace where your skills are recognized, your voice matters, and your contributions shape the future of our platform.",
+    "values": [
+      {
+        "title": "Culture",
+        "text": "A supportive environment where collaboration and respect shape every project and interaction.",
+        "tone": "light"
+      },
+      {
+        "title": "Growth",
+        "text": "Opportunities to learn, grow and take on challenges that accelerate your professional journey.",
+        "tone": "mid"
+      },
+      {
+        "title": "Impact",
+        "text": "Meaningful contributions that create real results for businesses, teams and their customers.",
+        "tone": "warm"
+      },
+      {
+        "title": "Tools",
+        "text": "A modern setup designed to help you work smarter and deliver your best work.",
+        "tone": "dark"
+      }
+    ],
+    "purposeEyebrow": "Our purpose",
+    "purposeHeading": "Driven by innovation, guided by purpose.",
+    "purposeText": "We create solutions that empower teams, simplify processes, and unlock meaningful business results.",
+    "purposeBtn": "Apply to an open position",
+    "purposeImage": "career-logo.png",
+    "openEyebrow": "Open positions",
+    "openHeading": "Current openings",
+    "openSub": "Pick a role and apply by email. Your application goes straight to our team.",
+    "applyBtn": "Apply by email",
+    "noRoles": "No open positions right now. Email us your CV and we will keep it on file.",
+    "ctaHeading": "Don't see your role?",
+    "ctaText": "Send us your CV and a short note about what you are good at. We reply to every application.",
+    "ctaBtn": "Email your CV",
+    "positions": [
+      {
+        "title": "Senior Product Designer",
+        "dept": "Design",
+        "type": "Full time",
+        "location": "Remote",
+        "summary": "Lead UX research, interface design and design systems for client products and our own apps."
+      },
+      {
+        "title": "Web Developer",
+        "dept": "Engineering",
+        "type": "Full time",
+        "location": "Lagos, Nigeria",
+        "summary": "Build fast, accessible websites and web apps with HTML, CSS, JavaScript and modern frameworks."
+      },
+      {
+        "title": "Frontend Developer",
+        "dept": "Engineering",
+        "type": "Contract",
+        "location": "Remote",
+        "summary": "Turn designs into responsive, animated interfaces with clean, maintainable code."
+      },
+      {
+        "title": "Brand & Graphic Designer",
+        "dept": "Creative",
+        "type": "Part time",
+        "location": "Lagos, Nigeria",
+        "summary": "Create logos, social graphics, presentations and print pieces that feel premium and consistent."
+      }
+    ]
+  },
   "launch": {
     "eyebrow": "Launching soon",
     "heading": "Coming next from Trozaxs Group",

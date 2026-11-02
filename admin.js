@@ -127,6 +127,20 @@
           K('image', 'image', 'Preview image', 'Paste a link or upload a screenshot. Leave empty to show the built-in illustration.', { opt: { max: 1100 } })
         ]
       }] },
+    { id: 'careers', title: 'Careers', roots: ['careers'], desc: 'The Careers page. Add, edit, reorder or delete open positions in the list at the bottom. Each position has an Apply by email button that opens your email app with the role already in the subject.',
+      fields: [T('careers.eyebrow', 'Small label'), T('careers.heroTitle', 'Hero heading'), TA('careers.heroText', 'Hero paragraph', '', 3), IMG('careers.heroImage', 'Hero photo', 'Wide photo, about 16:9. Paste a link or upload.', { opt: { max: 1400 } }),
+        T('careers.valuesEyebrow', 'Values label'), TA('careers.valuesHeading', 'Values heading', '', 3),
+        T('careers.purposeEyebrow', 'Purpose label'), T('careers.purposeHeading', 'Purpose heading'), TA('careers.purposeText', 'Purpose paragraph', '', 2), T('careers.purposeBtn', 'Purpose button text'), IMG('careers.purposeImage', 'Purpose logo', 'Square logo on a dark panel. Leave empty to hide it.', { opt: { max: 800, png: true } }),
+        T('careers.openEyebrow', 'Positions label'), T('careers.openHeading', 'Positions heading'), TA('careers.openSub', 'Positions paragraph', '', 2), T('careers.applyBtn', 'Apply button text'), TA('careers.noRoles', 'Text when no positions', 'Shown when the list below is empty.', 2),
+        T('careers.ctaHeading', 'Closing heading'), TA('careers.ctaText', 'Closing paragraph', '', 2), T('careers.ctaBtn', 'Closing button text')],
+      lists: [
+        { path: 'careers.values', title: 'Values', noun: 'value', titleKey: 'title',
+          blank: function () { return { title: 'New value', text: 'One short line.', tone: 'mid' }; },
+          fields: [K('text', 'title', 'Title'), K('textarea', 'text', 'Line', '', { rows: 2 }), K('text', 'tone', 'Colour', 'One of: light, mid, warm, dark.')] },
+        { path: 'careers.positions', title: 'Open positions', noun: 'position', titleKey: 'title',
+          blank: function () { return { title: 'New position', dept: 'Department', type: 'Full time', location: 'Remote', summary: 'What this role does and who it is for.' }; },
+          fields: [K('text', 'title', 'Job title'), K('text', 'dept', 'Department'), K('text', 'type', 'Type', 'For example: Full time, Part time, Contract.'), K('text', 'location', 'Location'), K('textarea', 'summary', 'Summary', 'One or two sentences.', { rows: 3 })] }
+      ] },
     { id: 'about', title: 'About', roots: ['about'], desc: 'About text and the four highlights beside it.',
       fields: [T('about.eyebrow', 'Small label'), TA('about.heading', 'Heading', '', 2), TA('about.text', 'Paragraph', '', 5), T('about.btn', 'Button text')],
       lists: [{

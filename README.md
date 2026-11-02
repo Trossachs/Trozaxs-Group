@@ -25,3 +25,10 @@ Crawlers ignore the part after `#`, so share these addresses to get the right ti
 - FAQ, Client logos and the Blog link are editable in Admin (FAQ, Client logos, Site & footer).
 - Each portfolio card opens `#work-<project-name>`. Fill in the description, highlights and live link in Admin > Portfolio.
 - Footer shows GitHub and Linktree icons once you paste their links in Admin > Site & footer.
+
+## Careers page
+
+- `#careers` (also `careers.html` for sharing). Linked from the menu and footer.
+- Edit the hero, values, purpose section and positions in Admin > Careers. Add, edit or delete open positions in the list at the bottom.
+- Each position's **Apply by email** button opens the visitor's email app, addressed to `contact.email`, with the role in the subject and a short application template in the body.
+- Hero photo is `career-hero.jpg`. Purpose logo is `career-logo.png`. Both can be replaced from the admin.

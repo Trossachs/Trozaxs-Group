@@ -201,6 +201,7 @@
     once('reviews', C('testimonials.items'), renderReviews);
     var bu = U.safeHref(C('site.blogUrl')); $$('[data-blog]').forEach(function(l){ l.hidden = !bu; if (bu) l.href = bu; });
     if (!firstRender) once('work', [C('portfolio.items'), current], function(){ if (current === 'work') showWork(decodeURIComponent(location.hash.slice(1)), true); });
+    if (!firstRender) once('careers', [C('careers'), current], function(){ if (current === 'careers') showCareers(true); });
     if (!firstRender) once('products', [C('products'), current], function(){ if (current === 'products') showProducts(true); });
     if (!firstRender) once('route', [location.hash, SERVICES], function(){ if (current !== 'svc') return; var h = decodeURIComponent(location.hash.slice(1)); if (h === 'svc-all' || BY[h.slice(4)]) showService(h, true); else location.hash = 'services'; });
     prepare(document.body);
@@ -326,6 +327,54 @@
     setActive('portfolio'); prepare(viewSvc);
   }
 
+  /* ---------- careers page ---------- */
+  function renderCareers(){
+    var c = function(k){ return C('careers.' + k); };
+    var jobs = arr(c('positions')).filter(function(p){ return p && p.title; });
+    var mail = U.isEmail(C('contact.email')) ? String(C('contact.email')).trim() : '';
+    var hero = U.safeUrl(c('heroImage')), purposeImg = U.safeUrl(c('purposeImage'));
+    var tones = { light: 1, mid: 1, warm: 1, dark: 1 };
+    function applyHref(p){
+      if (!mail) return '#contact';
+      var body = 'Hello Trozaxs Group,\n\nI would like to apply for the ' + p.title + ' role.\n\nFull name:\nPhone:\nCV or portfolio link:\n\nA short note about me:\n';
+      return 'mailto:' + mail + '?subject=' + encodeURIComponent('Application: ' + p.title) + '&body=' + encodeURIComponent(body);
+    }
+    viewSvc.innerHTML =
+    '<div class="wrap sp">'+
+      '<nav class="crumbs" aria-label="Breadcrumb"'+rv('fade')+'><a href="#home">Home</a><span>/</span><span aria-current="page">Careers</span></nav>'+
+      '<section class="panel cr-hero"'+rv('up')+'><p class="eyebrow">'+esc(c('eyebrow'))+'</p><h1 class="display"'+rv('up',80)+'>'+esc(c('heroTitle'))+'</h1>'+
+        '<p class="cr-lead"'+rv('up',160)+'>'+esc(c('heroText'))+'</p>'+
+        (hero ? '<figure class="cr-img"'+rv('zoom',200)+'><img src="'+esc(hero)+'" alt="The Trozaxs Group team at work" loading="eager" decoding="async"></figure>' : '')+
+      '</section>'+
+      '<section class="panel blk"><p class="eyebrow"'+rv('up')+'>'+esc(c('valuesEyebrow'))+'</p><h2 class="display"'+rv('up',80)+'>'+esc(c('valuesHeading'))+'</h2>'+
+        '<div class="cr-vals">'+arr(c('values')).map(function(v,i){ var t = tones[v.tone] ? v.tone : 'light'; return '<div class="cr-val t-'+t+'"'+rv('up',i*90)+'><span class="cr-vi" aria-hidden="true"></span><h3>'+esc(v.title)+'</h3><p>'+esc(v.text)+'</p></div>'; }).join('')+'</div></section>'+
+      '<section class="panel cr-purpose"'+rv('up')+'><div><p class="eyebrow">'+esc(c('purposeEyebrow'))+'</p><h2 class="display">'+esc(c('purposeHeading'))+'</h2><p class="cr-text">'+esc(c('purposeText'))+'</p>'+
+        '<button class="btn btn-primary" type="button" data-scrollto="cr-open">'+esc(c('purposeBtn'))+' <span class="arr">'+ARROW+'</span></button></div>'+
+        '<figure class="cr-logo"'+rv('zoom',150)+'>'+(purposeImg ? '<img src="'+esc(purposeImg)+'" alt="Trozaxs Group logo" loading="lazy">' : '')+'</figure></section>'+
+      '<section class="panel blk" id="cr-open"><p class="eyebrow"'+rv('up')+'>'+esc(c('openEyebrow'))+'</p><h2 class="display"'+rv('up',80)+'>'+esc(c('openHeading'))+'</h2><p class="cr-text">'+esc(c('openSub'))+'</p>'+
+        (jobs.length ? '<div class="cr-grid">'+jobs.map(function(p,i){
+          return '<article class="cr-job"'+rv('up',(i%2)*90)+'><div class="cr-job-top"><span class="cr-mark" aria-hidden="true">'+esc(String(p.title).trim().charAt(0).toUpperCase())+'</span><div><h3>'+esc(p.title)+'</h3><p class="cat">'+esc(p.dept||'')+'</p></div></div>'+
+            '<p class="pdesc">'+esc(p.summary||'')+'</p><div class="cr-tags">'+[p.type,p.location].filter(Boolean).map(function(t){return '<span class="chip">'+esc(t)+'</span>';}).join('')+'</div>'+
+            '<a class="btn btn-primary" href="'+esc(applyHref(p))+'">'+esc(c('applyBtn'))+' <span class="arr">'+ARROW+'</span></a></article>';
+        }).join('')+'</div>' : '<p class="cr-empty">'+esc(c('noRoles'))+'</p>')+
+        (mail ? '<p class="cr-mail">Or email your application to <a href="mailto:'+esc(mail)+'">'+esc(mail)+'</a></p>' : '')+
+      '</section>'+
+      '<section class="panel cta"'+rv('zoom')+'><p class="eyebrow">'+esc(C('contact.eyebrow'))+'</p><h2 class="display">'+esc(c('ctaHeading'))+'</h2><p>'+esc(c('ctaText'))+'</p>'+
+        '<a class="btn btn-primary" href="'+esc(mail ? 'mailto:' + mail + '?subject=' + encodeURIComponent('Open application') : '#contact')+'">'+esc(c('ctaBtn'))+' <span class="arr">'+ARROW+'</span></a></section>'+
+    '</div>';
+  }
+  function showCareers(keepScroll){
+    renderCareers();
+    viewHome.hidden = true; viewSvc.hidden = false; current = 'careers';
+    if (!keepScroll) window.scrollTo({top:0, behavior:'instant'});
+    setActive('careers'); prepare(viewSvc);
+  }
+  document.addEventListener('click', function(e){
+    var s = e.target.closest && e.target.closest('[data-scrollto]'); if (!s) return;
+    var t = document.getElementById(s.dataset.scrollto); if (!t) return;
+    e.preventDefault(); t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+  });
+
   /* ---------- router ---------- */
   var navLinks = $$('#links a');
   function setActive(key){ navLinks.forEach(function(a){ a.classList.toggle('on', a.dataset.key === key); }); }
@@ -338,6 +387,7 @@
   function route(){
     var h = decodeURIComponent((location.hash||'').slice(1)), wasHome = current === 'home';
     if (h === 'products'){ showProducts(); return; }
+    if (h === 'careers'){ showCareers(); return; }
     if (h.indexOf('work-') === 0 && WBY[h.slice(5)]){ showWork(h); return; }
     if (h === 'svc-all' || (h.indexOf('svc-') === 0 && BY[h.slice(4)])){ showService(h); return; }
     viewSvc.hidden = true; viewHome.hidden = false; current = 'home';
