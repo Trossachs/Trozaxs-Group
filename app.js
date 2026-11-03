@@ -562,7 +562,7 @@
     if (!TG.messages.add(m)) return say('Your message could not be saved in this browser. Please email us directly.', false);
     var fwd = U.safeHref(C('contact.forwardUrl'));
     if (/^https:/i.test(fwd) && window.fetch){
-      try { fetch(fwd, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify({ name:name, contact:contact, message:message }) }).catch(function(){}); } catch(x){}
+      try { fetch(fwd, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify({ name:name, contact:contact, message:message, _subject:'New message from '+name+' (Trozaxs Group website)', _replyto:isMail?contact:undefined, kind:isMail?'email':'phone' }) }).catch(function(){}); } catch(x){}
     }
     say(C('contact.success'), true); form.reset();
   });

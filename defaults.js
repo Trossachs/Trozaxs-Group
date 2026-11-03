@@ -573,7 +573,7 @@ window.TG_DEFAULTS = {
     "messageLabel": "Message",
     "button": "Send message",
     "success": "Thank you. Your message has been received and we will get back to you.",
-    "forwardUrl": ""
+    "forwardUrl": "https://formspree.io/f/maeeaqpw"
   },
   "footer": {
     "copyright": "Trozaxs Group. All rights reserved.",
